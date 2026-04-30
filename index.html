@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeLink</title>
+
+<style>
+body {
+  margin: 0;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+/* PHONE */
+.phone {
+  width: 360px;
+  height: 100vh;
+  background: #fff;
+  border-radius: 25px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* SCREENS */
+.screen {
+  display: none;
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+.active { display: block; }
+
+/* LOGO */
+.logo {
+  width: 130px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* TEXT */
+.center { text-align: center; }
+.brand { font-size: 26px; font-weight: bold; }
+.brand span { color: #e53935; }
+.sub { color: #777; font-size: 14px; }
+
+/* BUTTON */
+.btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.red { background: #e53935; color: white; }
+.outline {
+  border: 2px solid #e53935;
+  color: #e53935;
+  background: white;
+}
+
+/* INPUT */
+.input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+.input span { margin-right: 10px; }
+.input input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+}
+.grp {
+  padding: 10px;
+  border-radius: 8px;
+  background: #eee;
+  text-align: center;
+}
+.grp.active {
+  background: #e53935;
+  color: white;
+}
+
+/* BACK */
+.back {
+  color: red;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+}
+.tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+.tab.active {
+  color: #e53935;
+  border-bottom: 2px solid #e53935;
+}
+
+/* CARD */
+.card {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+/* SMALL TEXT */
+.small {
+  font-size: 10px;
+  color: #777;
+}
+.small span { color: red; }
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+
+<!-- ================= HOME ================= -->
+<div id="home" class="screen active center">
+
+<img src="logo.png" class="logo">
+
+<div class="brand"><span>Life</span>Link</div>
+<div class="sub">Linking Lives, saving lives</div>
+
+<button class="btn red" onclick="go('request')">SOS / Request Blood</button>
+<button class="btn outline" onclick="go('login')">Donor Login / Register</button>
+<button class="btn outline" onclick="go('organ')">Organ Donation</button>
+
+</div>
+
+<!-- ================= LOGIN ================= -->
+<div id="login" class="screen center">
+
+<img src="logo.png" class="logo">
+
+<div class="brand"><span>Life</span>Link</div>
+<div class="sub">Connecting Lives</div>
+
+<p>Login to continue as a registered donor</p>
+
+<div class="input"><span>📧</span><input placeholder="Email"></div>
+<div class="input"><span>🔒</span><input placeholder="Password"></div>
+
+<button class="btn red" onclick="go('register')">Login</button>
+
+<p style="color:red;">Forgot Password?</p>
+
+</div>
+
+<!-- ================= REGISTER ================= -->
+<div id="register" class="screen center">
+
+<div class="back" onclick="go('login')">← Back</div>
+
+<img src="logo.png" class="logo">
+
+<h2>Complete your donor profile</h2>
+<p>Share your details to register as a blood donor</p>
+
+<div class="input"><span>👤</span><input placeholder="Name"></div>
+<div class="input"><span>📅</span><input placeholder="Date of Birth"></div>
+<div class="input"><span>🩸</span><input placeholder="Blood Group"></div>
+<div class="input"><span>📍</span><input placeholder="Location"></div>
+<div class="input"><span>📞</span><input placeholder="Phone"></div>
+
+<label>
+<input type="checkbox"> I confirm I meet eligibility criteria
+</label>
+
+<button class="btn red" onclick="go('request')">Submit</button>
+
+<div class="small">
+By tapping Submit, you agree to our <br>
+<span>Terms and Conditions</span>
+</div>
+
+</div>
+
+<!-- ================= REQUEST ================= -->
+<div id="request" class="screen">
+
+<div class="back" onclick="go('home')">← Back</div>
+
+<img src="logo.png" class="logo">
+
+<h2>Request Blood</h2>
+<p>Find donors for your urgent need</p>
+
+<b>Blood Group Required</b>
+
+<div class="grid">
+<div class="grp">A+</div>
+<div class="grp">A-</div>
+<div class="grp active">B+</div>
+<div class="grp">B-</div>
+<div class="grp">O+</div>
+<div class="grp">O-</div>
+<div class="grp">AB+</div>
+<div class="grp">AB-</div>
+</div>
+
+<br>
+
+<b>Units Required</b>
+<div style="display:flex;gap:10px;">
+<button>-</button>
+<span>2 Units</span>
+<button>+</button>
+</div>
+
+<br>
+
+<b>Urgency Level</b>
+<div style="display:flex;gap:10px;">
+<div class="grp">Urgent</div>
+<div class="grp active">Critical</div>
+<div class="grp">Scheduled</div>
+</div>
+
+<br>
+
+<div class="input"><span>🏥</span><input placeholder="Enter Hospital"></div>
+<div class="input"><span>📍</span><input placeholder="Location"></div>
+<div class="input"><span>👤</span><input placeholder="Name"></div>
+<div class="input"><span>📞</span><input placeholder="Phone"></div>
+
+<button class="btn red">Send Request</button>
+
+<div class="small">
+By tapping Send Request, you agree to our <br>
+<span>Terms and Conditions</span>
+</div>
+
+</div>
+
+<!-- ================= ORGAN ================= -->
+<div id="organ" class="screen">
+
+<div class="back" onclick="go('home')">← Back</div>
+
+<img src="logo.png" class="logo">
+
+<div class="tabs">
+<div class="tab active" onclick="openTab(event,'reg')">Register</div>
+<div class="tab" onclick="openTab(event,'guide')">Guide</div>
+</div>
+
+<div id="reg" class="tabContent">
+<div class="card">
+<h3>Register via NOTTO</h3>
+<button class="btn red" onclick="openNOTTO()">Go to NOTTO</button>
+</div>
+</div>
+
+<div id="guide" class="tabContent" style="display:none;">
+<div class="card">
+<h3>Organ Donation Guide</h3>
+<ul>
+<li>Heart</li>
+<li>Kidney</li>
+<li>Liver</li>
+<li>Lungs</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function openTab(e, id){
+  document.querySelectorAll('.tabContent').forEach(t=>t.style.display='none');
+  document.getElementById(id).style.display='block';
+
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  e.target.classList.add('active');
+}
+
+function openNOTTO(){
+  window.open("https://notto.abdm.gov.in/");
+}
+</script>
+
+</body>
+</html>
